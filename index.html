@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✦ Happy Birthday Amani ✦</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Starry background */
+        .stars-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle var(--duration) ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+
+        /* Floating particles */
+        .particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, #d4af37, transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            animation: floatUp var(--dur) ease-in infinite;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% { opacity: 0; transform: translateY(100vh) scale(0); }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(-10vh) scale(1); }
+        }
+
+        body {
+            font-family: 'Cinzel', serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Changed to flex-start for scrolling long content */
+            overflow-x: hidden;
+            padding: 40px 20px;
+            color: #d4af37;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 1200px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Header */
+        .header {
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .header h1 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: #d4af37;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5), 0 0 40px rgba(212, 175, 55, 0.3);
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: #c9a84c;
+            opacity: 0.9;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Big Elegant Envelope */
+        .main-envelope {
+            width: 380px;
+            height: 260px;
+            margin: 0 auto;
+            position: relative;
+            cursor: pointer;
+            perspective: 1000px;
+            transition: all 0.5s ease;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .main-envelope:hover {
+            transform: translateY(-8px);
+        }
+
+        .envelope-body {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #1a2a5e, #0f1d4a, #1a2a5e);
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 2px 10px rgba(212, 175, 55, 0.1);
+            overflow: hidden;
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 55%;
+            background: linear-gradient(180deg, #1e3070, #1a2a5e);
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+            transform-origin: top center;
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 10;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .main-envelope.opened .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        /* Wax Seal */
+        .wax-seal {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: radial-gradient(circle at 35% 35%, #c0392b, #8b0000, #5c0000);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.6), inset 0 2px 5px rgba(255,255,255,0.2);
+            z-index: 11;
+            transition: all 0.6s ease;
+        }
+
+        .wax-seal::before {
+            content: 'H';
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 2rem;
+            color: #d4af37;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            font-weight: 900;
+        }
+
+        .wax-seal::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50%;
+            animation: sealPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes sealPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.15); opacity: 0; }
+        }
+
+        .main-envelope.opened .wax-seal {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0) rotate(180deg);
+        }
+
+        .main-envelope-text {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #d4af37;
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 18px;
+            letter-spacing: 2px;
+            z-index: 5;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+        }
+
+        .main-envelope.hidden {
+            display: none;
+        }
+
+        /* Magic burst effect */
+        .magic-burst {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.6), transparent);
+            z-index: 6;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .main-envelope.opened .magic-burst {
+            animation: burstAnim 1s ease-out forwards;
+        }
+
+        @keyframes burstAnim {
+            0% { width: 0; height: 0; opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { width: 400px; height: 400px; opacity: 0; }
+        }
+
+        /* Envelopes Grid */
+        .envelopes-container {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            opacity: 0;
+            animation: fadeInGrid 0.8s ease forwards;
+        }
+
+        .envelopes-container.active {
+            display: grid;
+        }
+
+        @keyframes fadeInGrid {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Sub Envelopes */
+        .envelope {
+            width: 140px;
+            height: 100px;
+            background: linear-gradient(145deg, #1a2a5e, #0f1d4a);
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            border-radius: 8px;
+            cursor: pointer;
+            position: relative;
+            margin: 0 auto;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 55%;
+            background: linear-gradient(180deg, #1e3070, #1a2a5e);
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+            border-radius: 8px 8px 0 0;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-origin: top center;
+            z-index: 3;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .envelope:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.3), 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .envelope.opened::before {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        /* Envelope Seal */
+        .envelope-seal {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 45px;
+            height: 45px;
+            background: radial-gradient(circle at 35% 35%, #c0392b, #8b0000);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 3px 10px rgba(139, 0, 0, 0.5), inset 0 1px 3px rgba(255,255,255,0.2);
+            z-index: 4;
+            transition: all 0.5s ease;
+        }
+
+        .envelope-seal::before {
+            content: '✦';
+            font-size: 20px;
+            color: #d4af37;
+        }
+
+        .envelope.photo-envelope .envelope-seal::before {
+            content: '✦';
+            font-size: 18px;
+        }
+
+        .envelope.opened .envelope-seal {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0) rotate(180deg);
+        }
+
+        .envelope-number {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(212, 175, 55, 0.6);
+            font-size: 12px;
+            font-family: 'Cinzel', serif;
+            z-index: 2;
+        }
+
+        /* Sparkle particles */
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #ffd700;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 15;
+            opacity: 0;
+        }
+
+        .envelope.opened .sparkle {
+            animation: sparkleFly 1.2s ease-out forwards;
+        }
+
+        @keyframes sparkleFly {
+            0% { opacity: 1; transform: translate(0, 0) scale(1); }
+            100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0); }
+        }
+
+        /* Centered Envelope Modal - FLEXBOX for dynamic content */
+        .envelope-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 8, 20, 0.95);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+            backdrop-filter: blur(5px);
+            padding: 20px;
+        }
+
+        .envelope-modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .centered-envelope {
+            width: 90%;
+            max-width: 600px;
+            max-height: 85vh; /* Prevents modal from exceeding screen */
+            background: linear-gradient(145deg, #1a2a5e, #0f1d4a);
+            border: 3px solid rgba(212, 175, 55, 0.5);
+            border-radius: 16px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 40px rgba(212, 175, 55, 0.2);
+            animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Modal Flap */
+        .centered-envelope::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(180deg, #1e3070, #1a2a5e);
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+            transform-origin: top center;
+            animation: openFlap 0.6s ease 0.3s forwards;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        @keyframes openFlap {
+            from { transform: rotateX(0deg); }
+            to { transform: rotateX(180deg); }
+        }
+
+        /* Scrollable Content Area */
+        .envelope-content {
+            flex: 1;
+            overflow-y: auto; /* Handles long text gracefully */
+            padding: 100px 40px 40px; /* Top padding clears the flap */
+            text-align: center;
+            z-index: 5;
+            opacity: 0;
+            animation: fadeInContent 0.5s ease 0.8s forwards;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeInContent {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Elegant Custom Scrollbar */
+        .envelope-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        .envelope-content::-webkit-scrollbar-track {
+            background: rgba(15, 29, 74, 0.5);
+            border-radius: 4px;
+        }
+        .envelope-content::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.4);
+            border-radius: 4px;
+        }
+        .envelope-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(212, 175, 55, 0.7);
+        }
+
+        .envelope-message {
+            color: #d4af37;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 25px;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            word-wrap: break-word;
+        }
+
+        /* Responsive Photo Handling */
+        .envelope-photo {
+            max-width: 100%;
+            max-height: 55vh;
+            height: auto;
+            width: auto;
+            border-radius: 12px;
+            border: 3px solid rgba(212, 175, 55, 0.6);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+            object-fit: contain;
+        }
+
+        .photo-caption {
+            color: #c9a84c;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.1));
+            color: #d4af37;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            padding: 12px 35px;
+            border-radius: 25px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 2px;
+            margin-top: auto; /* Pushes button to bottom if content is short */
+        }
+
+        .close-btn:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .back-btn {
+            display: none;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.1));
+            color: #d4af37;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 30px auto;
+            transition: all 0.3s ease;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 2px;
+        }
+
+        .back-btn:hover {
+            background: rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .back-btn.active {
+            display: inline-block;
+        }
+
+        .instruction {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: rgba(212, 175, 55, 0.7);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        /* Ambient glow */
+        .ambient-glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.05), transparent);
+            pointer-events: none;
+            z-index: 0;
+            animation: ambientFloat 8s ease-in-out infinite;
+        }
+
+        .ambient-glow:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .ambient-glow:nth-child(2) { bottom: 10%; right: 10%; animation-delay: 4s; }
+
+        @keyframes ambientFloat {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
+        }
+
+        @media (max-width: 768px) {
+            .main-envelope {
+                width: 300px;
+                height: 210px;
+            }
+            .envelopes-container {
+                grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+                gap: 15px;
+            }
+            .envelope {
+                width: 110px;
+                height: 78px;
+            }
+            .centered-envelope {
+                width: 95%;
+                max-height: 90vh;
+            }
+            .envelope-content {
+                padding: 90px 25px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Ambient glows -->
+    <div class="ambient-glow"></div>
+    <div class="ambient-glow"></div>
+
+    <!-- Stars -->
+    <div class="stars-container" id="starsContainer"></div>
+
+    <!-- Floating particles -->
+    <div id="particlesContainer"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>✦ Happy Birthday Amani ✦</h1>
+        </div>
+
+        <!-- Big Elegant Envelope -->
+        <div class="main-envelope" id="mainEnvelope">
+            <div class="envelope-body">
+                <div class="envelope-flap"></div>
+                <div class="wax-seal"></div>
+                <div class="magic-burst"></div>
+                <div class="main-envelope-text"></div>
+            </div>
+        </div>
+
+        <button class="back-btn" id="backBtn">← Back to Acceptance Letter</button>
+
+        <!-- 21 Envelopes Grid (19 text + 2 photo) -->
+        <div class="envelopes-container" id="envelopesContainer"></div>
+    </div>
+
+    <!-- Centered Envelope Modal -->
+    <div class="envelope-modal" id="envelopeModal">
+        <div class="centered-envelope">
+            <div class="envelope-content">
+                <div class="envelope-message" id="envelopeMessage">
+                    Your birthday wish will appear here...
+                </div>
+                <img class="envelope-photo" id="envelopePhoto" style="display: none;" alt="Birthday Memory">
+                <div class="photo-caption" id="photoCaption" style="display: none;"></div>
+                <button class="close-btn" id="closeBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const mainEnvelope = document.getElementById('mainEnvelope');
+        const envelopesContainer = document.getElementById('envelopesContainer');
+        const envelopeModal = document.getElementById('envelopeModal');
+        const envelopeMessage = document.getElementById('envelopeMessage');
+        const envelopePhoto = document.getElementById('envelopePhoto');
+        const photoCaption = document.getElementById('photoCaption');
+        const closeBtn = document.getElementById('closeBtn');
+        const backBtn = document.getElementById('backBtn');
+        const instruction = document.getElementById('instruction');
+
+        // Generate stars
+        const starsContainer = document.getElementById('starsContainer');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 3 + 1;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+            star.style.animationDelay = Math.random() * 5 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Generate floating particles
+        const particlesContainer = document.getElementById('particlesContainer');
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.setProperty('--dur', (Math.random() * 8 + 6) + 's');
+            particle.style.animationDelay = Math.random() * 10 + 's';
+            particle.style.width = (Math.random() * 4 + 2) + 'px';
+            particle.style.height = particle.style.width;
+            particlesContainer.appendChild(particle);
+        }
+
+        // 19 Birthday wishes (One is intentionally long to demonstrate scrolling)
+        const birthdayWishes = [
+            "Wishing you a day filled with love, laughter, and magical moments!",
+            "Happy birthday dear amouna💕 I wish you the happiest 21st birthday and a long, healthy, happy and peaceful life surrounded by all the people you love most. I love you so much and I love the bond that we have. You’ve been such a blessing to everyone lucky enough to know you, you have the purest heart and a genuinely kind soul, and I hope you always know how loved and appreciated you are🫶🏻🫶🏻 No amount of words can be enough to describe how grateful i am to have you in my life, you truely deserve all the happiness and love in the world🥹💗   I love you dearly ,Rym 🤍",
+            "Here's to another year of creating amazing memories together!",
+            "You deserve all the happiness and success in the world!",
+            "Happy Birthday to someone truly special and extraordinary!",
+            "My afresh mina Writing this for you sending you my beautiful Enrgy Knowning that if I had the chance I'd make us twins , I'm so in sister with you I came to the conclusion you're my soulmate You've ever been my Lovely sister, and always will be , and if I were to make you the daughter I will never have, I would , I adore seeing you growing day by day , learn, and live , and I hope you a life full of blessings and love and abundance and peace and surrounded by the people they love and appreciate you",
+            "Celebrating you today and always - you're absolutely amazing!",
+            "i wish you a life as sweet as your heart and as beautiful as your face i wish u get everything u ever dreamed of in life cuz u deserve the world baby and i wish ill be by your side to witness your greatest successes inchallah I LOVE YOU SO SO MUCH - Yasmine",
+            "Another year wiser, another year brighter, another year more wonderful!",
+            "Happy birthday to the prettiest girl ever love you so much wish you all all the best and happiness in your life always be happy and Rabi yahafdhekk w Rabi ykhalik Lina we love you bzzzf and you deserve all the love 💞💞💞 You’re special girl kind beautiful  Enjoy your day Zina 🥹💕💕💕💕💕- amina",
+            "Happy birthday, dearest Amaniiii! <3 I hope you live a long, healthy and joyful life. I wish you nothing but success in this new year of yours! Please know that you are so loved and appreciated by your kindhearted friends. You are truly the most lovely, successful and hardworking girl I've ever known. Don't forget to live, love & laugh!Sincerely, Jenine",
+            "May your heart be full of joy and your life full of magic!",
+            "Celebrating the wonderful, kind, and beautiful person you are!",
+            "Wishing you all the best on your special day and always!",
+            "Hey Amani, this is Tessnim! Happy birthday, sweetheart! 🥹❤️ I hope you have the loveliest birthday and that this new year brings you lots of happiness, success, and everything you’ve ever wished for 🫶🏻 You’re genuinely such a sweet and kind person. Wishing you all the best, and enjoy your day! 💋🎂🎂",
+            "May this year exceed all your expectations and dreams!",
+            "Happy Birthday, beautiful soul! Shine bright always!",
+            "Sending you love, warmth, and happiness on your special day!",
+            "On this special day, I want to remind you of how incredibly valued you are. May this coming year be filled with boundless opportunities, profound joy, and the kind of magic that makes every single day feel like a beautiful adventure. Never forget how much you are loved, how much you have achieved, and how brightly your future shines. Happy Birthday, Amani! ✦",
+            "Celebrating you today and always - you're absolutely amazing!",
+            "You are loved !"
+        ];
+
+        // 2 Photo envelopes
+        const photoEnvelopes = [
+            {
+                src: "https://i.ibb.co/0VndJwJT/Untitled-design-1.png"
+            }
+        ];
+
+        // Positions for the 2 photo envelopes (e.g., 7 and 14)
+        const photoPositions = [7];
+
+        // Create 21 envelopes
+        for (let i = 1; i <= 21; i++) {
+            const envelope = document.createElement('div');
+            const isPhoto = photoPositions.includes(i);
+            envelope.className = 'envelope' + (isPhoto ? ' photo-envelope' : '');
+            envelope.dataset.number = i;
+            envelope.dataset.type = isPhoto ? 'photo' : 'text';
+            
+            envelope.innerHTML = `
+                <div class="envelope-seal"></div>
+                <div class="envelope-number">${i}</div>
+                <div class="sparkle" style="--tx: -60px; --ty: -50px; animation-delay: 0.1s;"></div>
+                <div class="sparkle" style="--tx: 70px; --ty: -40px; animation-delay: 0.15s;"></div>
+                <div class="sparkle" style="--tx: -50px; --ty: 60px; animation-delay: 0.2s;"></div>
+                <div class="sparkle" style="--tx: 60px; --ty: 70px; animation-delay: 0.25s;"></div>
+            `;
+            
+            envelope.addEventListener('click', () => openEnvelope(i, isPhoto));
+            envelopesContainer.appendChild(envelope);
+        }
+
+        // Open main envelope
+        mainEnvelope.addEventListener('click', () => {
+            if (mainEnvelope.classList.contains('opened')) return;
+            mainEnvelope.classList.add('opened');
+            createBurstSparkles(mainEnvelope);
+            
+            setTimeout(() => {
+                mainEnvelope.classList.add('hidden');
+                envelopesContainer.classList.add('active');
+                backBtn.classList.add('active');
+                instruction.style.display = 'block';
+            }, 800);
+        });
+
+        function createBurstSparkles(envelope) {
+            const rect = envelope.getBoundingClientRect();
+            const cx = rect.width / 2;
+            const cy = rect.height / 2;
+
+            for (let i = 0; i < 15; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.position = 'absolute';
+                sparkle.style.left = cx + 'px';
+                sparkle.style.top = cy + 'px';
+                sparkle.style.width = (Math.random() * 8 + 4) + 'px';
+                sparkle.style.height = sparkle.style.width;
+                sparkle.style.background = Math.random() > 0.5 ? '#ffd700' : '#fff';
+                sparkle.style.zIndex = '20';
+                sparkle.style.pointerEvents = 'none';
+
+                const angle = (Math.PI * 2 * i) / 15;
+                const dist = 100 + Math.random() * 80;
+                sparkle.style.setProperty('--tx', (Math.cos(angle) * dist) + 'px');
+                sparkle.style.setProperty('--ty', (Math.sin(angle) * dist) + 'px');
+                sparkle.style.opacity = '1';
+                sparkle.style.animation = `sparkleFly ${1 + Math.random() * 0.5}s ease-out forwards`;
+
+                envelope.querySelector('.envelope-body').appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 2000);
+            }
+        }
+
+        // Back button
+        backBtn.addEventListener('click', () => {
+            envelopesContainer.classList.remove('active');
+            backBtn.classList.remove('active');
+            instruction.style.display = 'none';
+            mainEnvelope.classList.remove('hidden', 'opened');
+            document.querySelectorAll('.envelope').forEach(env => env.classList.remove('opened'));
+        });
+
+        // Open envelope modal
+        function openEnvelope(number, isPhoto) {
+            const envelope = document.querySelector(`.envelope[data-number="${number}"]`);
+            if (envelope.classList.contains('opened')) return;
+            envelope.classList.add('opened');
+            createEnvelopeSparkles(envelope);
+
+            if (isPhoto) {
+                const photoIndex = photoPositions.indexOf(number);
+                const photoData = photoEnvelopes[photoIndex];
+                
+                envelopeMessage.style.display = 'none';
+                envelopePhoto.style.display = 'block';
+                envelopePhoto.src = photoData.src;
+                photoCaption.style.display = 'block';
+                photoCaption.textContent = photoData.caption;
+            } else {
+                envelopeMessage.style.display = 'block';
+                envelopeMessage.textContent = birthdayWishes[number - 1];
+                envelopePhoto.style.display = 'none';
+                photoCaption.style.display = 'none';
+            }
+
+            envelopeModal.classList.add('active');
+        }
+
+        function createEnvelopeSparkles(envelope) {
+            const rect = envelope.getBoundingClientRect();
+            const cx = rect.width / 2;
+            const cy = rect.height / 2;
+
+            for (let i = 0; i < 10; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.position = 'absolute';
+                sparkle.style.left = cx + 'px';
+                sparkle.style.top = cy + 'px';
+                sparkle.style.width = (Math.random() * 6 + 3) + 'px';
+                sparkle.style.height = sparkle.style.width;
+                sparkle.style.background = Math.random() > 0.5 ? '#ffd700' : '#fff';
+                sparkle.style.zIndex = '20';
+                sparkle.style.pointerEvents = 'none';
+
+                const angle = (Math.PI * 2 * i) / 10;
+                const dist = 70 + Math.random() * 50;
+                sparkle.style.setProperty('--tx', (Math.cos(angle) * dist) + 'px');
+                sparkle.style.setProperty('--ty', (Math.sin(angle) * dist) + 'px');
+                sparkle.style.opacity = '1';
+                sparkle.style.animation = `sparkleFly ${0.8 + Math.random() * 0.5}s ease-out forwards`;
+
+                envelope.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 1500);
+            }
+        }
+
+        // Close modal
+        closeBtn.addEventListener('click', () => {
+            envelopeModal.classList.remove('active');
+        });
+
+        envelopeModal.addEventListener('click', (e) => {
+            if (e.target === envelopeModal) {
+                envelopeModal.classList.remove('active');
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                envelopeModal.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
